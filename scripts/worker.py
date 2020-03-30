@@ -20,6 +20,11 @@ def process_request(dc, s3_client, job_code, **kwargs):
 
             ds = process_geomedian(dc=dc, **kwargs)
             save_bands = ["red", "green", "blue", "nir", "swir1", "swir2"]
+        elif job_code == "ndvi_anomaly":
+            from ndvi_anomaly import process_ndvi_anomaly
+
+            ds = process_ndvi_anomaly(dc=dc, **kwargs)
+            save_bands = ["red", "green", "blue", "nir", "swir1", "swir2"]
 
         if ds:
             logging.info("Saving data.")
